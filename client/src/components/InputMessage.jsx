@@ -32,6 +32,7 @@ const InputMessage = ({ socket }) => {
         gap: 2,
         paddingBottom: '3vh',
         marginTop: '20px',
+        padding: '10px',
       }}
     >
       <TextField

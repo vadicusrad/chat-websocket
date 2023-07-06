@@ -38,7 +38,12 @@ const HomePage = ({ socket }) => {
       <Box
         component='form'
         onSubmit={handleSubmit}
-        sx={{ display: 'flex', flexDirection: 'column', gap: 4 }}
+        sx={{
+          display: 'flex',
+          flexDirection: 'column',
+          gap: 4,
+          marginTop: '10vh',
+        }}
       >
         <Typography variant='h2'>Вход в чат</Typography>
 

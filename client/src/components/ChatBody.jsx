@@ -1,6 +1,23 @@
 /* eslint-disable react/prop-types */
 import { Box, Typography } from '@mui/material';
-const ChatBody = ({ messages, status }) => {
+import { useEffect, useRef, useState } from 'react';
+const ChatBody = ({ status, socket }) => {
+  const [messages, setMessages] = useState([]);
+  const chatBlock = useRef(null);
+
+  const scrollToBottom = () => {
+    const lastChildElement = chatBlock.current?.lastElementChild;
+    lastChildElement?.scrollIntoView({ behavior: 'smooth' });
+  };
+
+  useEffect(() => {
+    socket.on('response', (data) => {
+      setMessages([...messages, data]);
+    });
+
+    scrollToBottom();
+  }, [messages, socket]);
+
   return (
     <Box
       sx={{
@@ -8,8 +25,14 @@ const ChatBody = ({ messages, status }) => {
         flexDirection: 'column',
         flexGrow: 1,
         padding: '10px',
+        overflowY: 'scroll',
       }}
+      ref={chatBlock}
+      className='chatBody'
     >
+      <Box sx={{ position: 'fixed', bottom: '150px' }}>
+        <Typography variant='body2'>{status}</Typography>
+      </Box>
       {messages.map((message) => {
         if (message.name === localStorage.getItem('user')) {
           return (
@@ -17,8 +40,8 @@ const ChatBody = ({ messages, status }) => {
               style={{
                 backgroundColor: '#66bb6a',
                 padding: '10px',
-                marginBottom: '15px',
-                marginTop: '15px',
+                marginBottom: '7px',
+                marginTop: '7px',
                 borderRadius: '6px',
                 alignSelf: 'flex-end',
                 width: '70%',
@@ -36,8 +59,8 @@ const ChatBody = ({ messages, status }) => {
             style={{
               backgroundColor: '#f44336',
               padding: '10px',
-              marginBottom: '15px',
-              marginTop: '15px',
+              marginBottom: '7px',
+              marginTop: '7px',
               borderRadius: '10px',
               width: '70%',
               color: 'white',
@@ -49,10 +72,6 @@ const ChatBody = ({ messages, status }) => {
           </Box>
         );
       })}
-
-      <Box sx={{ position: 'fixed', bottom: '150px' }}>
-        <Typography variant='body2'>{status}</Typography>
-      </Box>
     </Box>
   );
 };

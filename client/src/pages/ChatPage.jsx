@@ -8,18 +8,18 @@ import Header from '../components/Header';
 import { useNavigate } from 'react-router-dom';
 
 const ChatPage = ({ socket }) => {
-  const [messages, setMessages] = useState([]);
+  // const [messages, setMessages] = useState([]);
   const [status, setStatus] = useState('');
   const navigate = useNavigate();
-  useEffect(() => {
-    socket.on('response', (data) => {
-      setMessages([...messages, data]);
-    });
-    window.scrollTo({
-      top: document.body.scrollHeight,
-      behavior: 'smooth',
-    });
-  }, [messages, socket]);
+  // useEffect(() => {
+  //   socket.on('response', (data) => {
+  //     setMessages([...messages, data]);
+  //   });
+  //   window.scrollTo({
+  //     top: document.body.scrollHeight,
+  //     behavior: 'smooth',
+  //   });
+  // }, [messages, socket]);
 
   useEffect(() => {
     socket.on('responseTyping', (data) => {
@@ -29,14 +29,12 @@ const ChatPage = ({ socket }) => {
       }, 1000);
     });
   }, [status, socket]);
-
   const handleWindowBeforeUnload = () => {
     socket.emit('logOut', {
       name: localStorage.getItem('user'),
       socketID: socket.id,
     });
     localStorage.removeItem('user');
-    // navigate('/');
   };
 
   useEffect(() => {
@@ -66,8 +64,9 @@ const ChatPage = ({ socket }) => {
         <Box
           sx={{
             display: 'flex',
-            gap: 4,
             minHeight: '90vh',
+            position: 'relative',
+            maxHeight: '95vh',
           }}
         >
           <Sidebar socket={socket} />
@@ -77,10 +76,12 @@ const ChatPage = ({ socket }) => {
               display: 'flex',
               flexDirection: 'column',
               flexGrow: 1,
-              justifyContent: 'space-between',
+              // justifyContent: 'space-between',
+              height: '90vh',
+              maxHeight: '90vh',
             }}
           >
-            <ChatBody messages={messages} socket={socket} status={status} />
+            <ChatBody socket={socket} status={status} />
             <InputMessage socket={socket} />
           </Box>
         </Box>
