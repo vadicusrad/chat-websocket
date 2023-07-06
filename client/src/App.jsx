@@ -1,7 +1,7 @@
 import { Route, Routes } from 'react-router-dom';
 import socketio from 'socket.io-client';
-import HomePage from './components/HomePage';
-import ChatPage from './components/ChatPage';
+import HomePage from './pages/HomePage';
+import ChatPage from './pages/ChatPage';
 
 const socket = socketio.connect('http://localhost:5000');
 

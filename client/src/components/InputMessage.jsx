@@ -1,11 +1,12 @@
 /* eslint-disable react/prop-types */
+import { Box, Button, TextField } from '@mui/material';
 import { useState } from 'react';
 
-const ChatMessageBlock = ({ socket }) => {
+const InputMessage = ({ socket }) => {
   const [message, setMessage] = useState('');
 
   const isTyping = () =>
-    socket.emit('typing', `${localStorage.getItem('user')} is typing`);
+    socket.emit('typing', `${localStorage.getItem('user')}, is typing...`);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -22,16 +23,28 @@ const ChatMessageBlock = ({ socket }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <input
+    <Box
+      component='form'
+      onSubmit={handleSubmit}
+      sx={{
+        display: 'flex',
+        flexDirection: 'column',
+        gap: 2,
+        paddingBottom: '3vh',
+        marginTop: '20px',
+      }}
+    >
+      <TextField
         type='text'
         value={message}
         onChange={(e) => setMessage(e.target.value)}
         onKeyDown={() => isTyping()}
       />
-      <button type='submit'>Отправить</button>
-    </form>
+      <Button variant='contained' color='success' size='large' type='submit'>
+        Отправить
+      </Button>
+    </Box>
   );
 };
 
-export default ChatMessageBlock;
+export default InputMessage;
