@@ -8,18 +8,8 @@ import Header from '../components/Header';
 import { useNavigate } from 'react-router-dom';
 
 const ChatPage = ({ socket }) => {
-  // const [messages, setMessages] = useState([]);
   const [status, setStatus] = useState('');
   const navigate = useNavigate();
-  // useEffect(() => {
-  //   socket.on('response', (data) => {
-  //     setMessages([...messages, data]);
-  //   });
-  //   window.scrollTo({
-  //     top: document.body.scrollHeight,
-  //     behavior: 'smooth',
-  //   });
-  // }, [messages, socket]);
 
   useEffect(() => {
     socket.on('responseTyping', (data) => {
@@ -76,7 +66,6 @@ const ChatPage = ({ socket }) => {
               display: 'flex',
               flexDirection: 'column',
               flexGrow: 1,
-              // justifyContent: 'space-between',
               height: '90vh',
               maxHeight: '90vh',
             }}

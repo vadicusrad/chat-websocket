@@ -7,7 +7,6 @@ const Sidebar = ({ socket }) => {
 
   useEffect(() => {
     socket.on('responseNewUser', (data) => setUsers(data));
-    console.log('responseNewUser', users);
   }, [socket, users]);
 
   return (

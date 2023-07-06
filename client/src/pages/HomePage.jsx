@@ -58,6 +58,7 @@ const HomePage = ({ socket }) => {
           }}
           error={inputError}
           helperText={inputError && 'Имя пользователя не может быть пустым'}
+          autoFocus
         />
         <Button variant='contained' size='large' type='submit'>
           Войти

@@ -1,19 +1,18 @@
-import React from 'react';
+import React, { createContext } from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App.jsx';
 import './index.css';
 import { BrowserRouter as Router } from 'react-router-dom';
-import '@fontsource/roboto/300.css';
-import '@fontsource/roboto/400.css';
-import '@fontsource/roboto/500.css';
-import '@fontsource/roboto/700.css';
-import { CssBaseline } from '@mui/material';
+import ThemeProviderMode from './components/theme/ThemeProviderMode';
+
+export const ColorModeContext = createContext({ toggleColorMode: () => {} });
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <Router>
-      <CssBaseline />
-      <App />
-    </Router>
+    <ThemeProviderMode>
+      <Router>
+        <App />
+      </Router>
+    </ThemeProviderMode>
   </React.StrictMode>
 );

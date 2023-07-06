@@ -18,7 +18,6 @@ const InputMessage = ({ socket }) => {
         socketID: socket.id,
       });
     }
-
     setMessage('');
   };
 
@@ -40,6 +39,7 @@ const InputMessage = ({ socket }) => {
         value={message}
         onChange={(e) => setMessage(e.target.value)}
         onKeyDown={() => isTyping()}
+        autoFocus
       />
       <Button variant='contained' color='success' size='large' type='submit'>
         Отправить

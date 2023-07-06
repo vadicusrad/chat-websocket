@@ -24,7 +24,7 @@ const ChatBody = ({ status, socket }) => {
         display: 'flex',
         flexDirection: 'column',
         flexGrow: 1,
-        padding: '10px',
+        padding: '10px 20px 10px 20px',
         overflowY: 'scroll',
       }}
       ref={chatBlock}
