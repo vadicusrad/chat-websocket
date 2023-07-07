@@ -1,5 +1,12 @@
 /* eslint-disable react/prop-types */
-import { List, ListItem, ListItemText, Typography } from '@mui/material';
+import {
+  Box,
+  List,
+  ListItem,
+  ListItemButton,
+  ListItemText,
+  Typography,
+} from '@mui/material';
 import { useEffect, useState } from 'react';
 
 const Sidebar = ({ socket }) => {
@@ -10,25 +17,28 @@ const Sidebar = ({ socket }) => {
   }, [socket, users]);
 
   return (
-    <List
-      dense={true}
+    <Box
       sx={{
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        padding: '20px',
+        marginRight: '20px',
+        width: '200px',
+        overflowY: 'scroll',
       }}
+      className='hideScrollbar'
     >
-      <Typography variant='h6'>Участники чата</Typography>
-      {users &&
-        users.map((user) => {
-          return (
-            <ListItem key={user.socketID}>
-              <ListItemText primary={user.user} />
-            </ListItem>
-          );
-        })}
-    </List>
+      <Typography variant='h5'>Участники чата</Typography>
+      <List dense={true}>
+        {users &&
+          users.map((user) => {
+            return (
+              <ListItem key={user.socketID} disablePadding>
+                <ListItemButton>
+                  <ListItemText primary={user.user} />
+                </ListItemButton>
+              </ListItem>
+            );
+          })}
+      </List>
+    </Box>
   );
 };
 

@@ -3,9 +3,9 @@ import { useEffect, useState } from 'react';
 import Sidebar from '../components/Sidebar';
 import ChatBody from '../components/ChatBody';
 import InputMessage from '../components/InputMessage';
-import { Box, Divider, Grid } from '@mui/material';
-import Header from '../components/Header';
+import { Box, Divider } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
+import Layout from '../components/Layout';
 
 const ChatPage = ({ socket }) => {
   const [status, setStatus] = useState('');
@@ -35,47 +35,32 @@ const ChatPage = ({ socket }) => {
   }, []);
 
   return (
-    <Grid
-      container
-      direction='column'
-      alignItems='center'
-      justify='center'
-      height={'100vh'}
-    >
+    <Layout socket={socket}>
       <Box
         sx={{
-          width: '640px',
-          maxWidth: '640px',
+          padding: '40px 20px 20px 20px',
+          width: '100%',
+          display: 'flex',
           flexGrow: 1,
-          height: '100vh',
+          height: '90vh',
+          maxHeight: 'screen',
         }}
       >
-        <Header socket={socket} />
+        <Sidebar socket={socket} />
+        <Divider orientation='vertical' flexItem />
         <Box
           sx={{
             display: 'flex',
-            minHeight: '90vh',
-            position: 'relative',
-            maxHeight: '95vh',
+            flexDirection: 'column',
+            flexGrow: 1,
           }}
         >
-          <Sidebar socket={socket} />
-          <Divider orientation='vertical' flexItem />
-          <Box
-            sx={{
-              display: 'flex',
-              flexDirection: 'column',
-              flexGrow: 1,
-              height: '90vh',
-              maxHeight: '90vh',
-            }}
-          >
-            <ChatBody socket={socket} status={status} />
-            <InputMessage socket={socket} />
-          </Box>
+          <ChatBody socket={socket} status={status} />
+          <InputMessage socket={socket} />
         </Box>
+        <Divider orientation='vertical' flexItem />
       </Box>
-    </Grid>
+    </Layout>
   );
 };
 

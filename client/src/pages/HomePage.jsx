@@ -1,7 +1,8 @@
 /* eslint-disable react/prop-types */
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Box, Button, Grid, TextField, Typography } from '@mui/material';
+import { Box, Button, TextField, Typography } from '@mui/material';
+import Layout from '../components/Layout';
 const HomePage = ({ socket }) => {
   const navigate = useNavigate();
 
@@ -34,18 +35,26 @@ const HomePage = ({ socket }) => {
   }, [socket]);
 
   return (
-    <Grid container direction='column' alignItems='center' justify='center'>
+    <Layout socket={socket}>
       <Box
         component='form'
         onSubmit={handleSubmit}
         sx={{
           display: 'flex',
           flexDirection: 'column',
+          alignItems: 'center',
+          justifyContent: 'center',
           gap: 4,
           marginTop: '10vh',
+          maxWidth: '640px',
+          padding: '40px 60px 40px 60px',
+          boxShadow: 2,
+          borderRadius: '10px',
         }}
       >
-        <Typography variant='h2'>Вход в чат</Typography>
+        <Typography variant='h3' component='h1'>
+          Вход в чат
+        </Typography>
 
         <TextField
           id='outlined-basic'
@@ -64,7 +73,7 @@ const HomePage = ({ socket }) => {
           Войти
         </Button>
       </Box>
-    </Grid>
+    </Layout>
   );
 };
 

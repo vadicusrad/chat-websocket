@@ -24,13 +24,13 @@ const ChatBody = ({ status, socket }) => {
         display: 'flex',
         flexDirection: 'column',
         flexGrow: 1,
-        padding: '10px 20px 10px 20px',
+        margin: ' 0 20px 0 20px',
         overflowY: 'scroll',
       }}
       ref={chatBlock}
-      className='chatBody'
+      className='hideScrollbar'
     >
-      <Box sx={{ position: 'fixed', bottom: '150px' }}>
+      <Box sx={{ position: 'fixed', bottom: '90px' }}>
         <Typography variant='body2'>{status}</Typography>
       </Box>
       {messages.map((message) => {
@@ -44,8 +44,10 @@ const ChatBody = ({ status, socket }) => {
                 marginTop: '7px',
                 borderRadius: '6px',
                 alignSelf: 'flex-end',
-                width: '70%',
+                width: '300px',
+                height: 'auto',
                 color: 'white',
+                overflowWrap: 'break-word',
               }}
               key={message.id}
             >
@@ -57,12 +59,12 @@ const ChatBody = ({ status, socket }) => {
         return (
           <Box
             style={{
-              backgroundColor: '#f44336',
+              backgroundColor: '#f56c62',
               padding: '10px',
               marginBottom: '7px',
               marginTop: '7px',
               borderRadius: '10px',
-              width: '70%',
+              width: '300px',
               color: 'white',
             }}
             key={message.id}

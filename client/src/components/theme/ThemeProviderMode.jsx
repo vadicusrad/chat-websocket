@@ -1,7 +1,8 @@
 /* eslint-disable react/prop-types */
-import { ThemeProvider, createTheme } from '@mui/material';
+import { CssBaseline, ThemeProvider, createTheme } from '@mui/material';
 import { useMemo, useState } from 'react';
 import { ColorModeContext } from '../../main';
+import { designTokens } from './designTokens';
 
 export default function ThemeProviderMode({ children }) {
   const [mode, setMode] = useState('light');
@@ -14,19 +15,14 @@ export default function ThemeProviderMode({ children }) {
     []
   );
 
-  const theme = useMemo(
-    () =>
-      createTheme({
-        palette: {
-          mode,
-        },
-      }),
-    [mode]
-  );
+  const theme = useMemo(() => createTheme(designTokens(mode)), [mode]);
 
   return (
     <ColorModeContext.Provider value={colorMode}>
-      <ThemeProvider theme={theme}>{children}</ThemeProvider>
+      <ThemeProvider theme={theme}>
+        <CssBaseline />
+        {children}
+      </ThemeProvider>
     </ColorModeContext.Provider>
   );
 }

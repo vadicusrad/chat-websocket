@@ -1,6 +1,7 @@
 /* eslint-disable react/prop-types */
 import { Box, Button, TextField } from '@mui/material';
 import { useState } from 'react';
+import SendIcon from '@mui/icons-material/Send';
 
 const InputMessage = ({ socket }) => {
   const [message, setMessage] = useState('');
@@ -27,22 +28,30 @@ const InputMessage = ({ socket }) => {
       onSubmit={handleSubmit}
       sx={{
         display: 'flex',
-        flexDirection: 'column',
-        gap: 2,
+        width: '100%',
         paddingBottom: '3vh',
         marginTop: '20px',
         padding: '10px',
       }}
     >
       <TextField
+        variant='filled'
         type='text'
         value={message}
         onChange={(e) => setMessage(e.target.value)}
         onKeyDown={() => isTyping()}
         autoFocus
+        InputProps={{ sx: { borderRadius: '5px 0 0 5px' } }}
+        fullWidth
       />
-      <Button variant='contained' color='success' size='large' type='submit'>
-        Отправить
+      <Button
+        variant='contained'
+        color='success'
+        size='large'
+        type='submit'
+        sx={{ borderRadius: '0 5px 5px 0' }}
+      >
+        <SendIcon />
       </Button>
     </Box>
   );
