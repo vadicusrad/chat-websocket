@@ -24,8 +24,13 @@ const ChatBody = ({ status, socket }) => {
         display: 'flex',
         flexDirection: 'column',
         flexGrow: 1,
-        margin: ' 0 20px 0 20px',
+        margin: {
+          sm: '40px 20px 20px 20px',
+          xs: '20px 10px 10px 10px',
+        },
         overflowY: 'scroll',
+        height: '60vh',
+        maxHeight: '80vh',
       }}
       ref={chatBlock}
       className='hideScrollbar'
@@ -44,7 +49,7 @@ const ChatBody = ({ status, socket }) => {
                 marginTop: '7px',
                 borderRadius: '6px',
                 alignSelf: 'flex-end',
-                width: '300px',
+                width: '280px',
                 height: 'auto',
                 color: 'white',
                 overflowWrap: 'break-word',
@@ -64,7 +69,7 @@ const ChatBody = ({ status, socket }) => {
               marginBottom: '7px',
               marginTop: '7px',
               borderRadius: '10px',
-              width: '300px',
+              width: '280px',
               color: 'white',
             }}
             key={message.id}

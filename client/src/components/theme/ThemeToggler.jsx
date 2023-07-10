@@ -8,11 +8,7 @@ const ThemeToggler = () => {
   const colorMode = useContext(ColorModeContext);
 
   return (
-    <IconButton
-      sx={{ ml: 1 }}
-      onClick={colorMode.toggleColorMode}
-      color='inherit'
-    >
+    <IconButton onClick={colorMode.toggleColorMode} color='inherit'>
       {theme.palette.mode === 'dark' ? <LightModeIcon /> : <DarkModeIcon />}
     </IconButton>
   );

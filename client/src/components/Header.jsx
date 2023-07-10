@@ -1,36 +1,22 @@
 /* eslint-disable react/prop-types */
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
-import Button from '@mui/material/Button';
-import { useNavigate } from 'react-router-dom';
 import { Box, Container, Typography } from '@mui/material';
-import LogoutIcon from '@mui/icons-material/Logout';
 import ThemeToggler from './theme/ThemeToggler';
+import LogOut from './LogOut';
 
 const Header = ({ socket }) => {
-  const navigate = useNavigate();
-  const handleLeaveChat = () => {
-    socket.emit('logOut', {
-      name: localStorage.getItem('user'),
-      socketID: socket.id,
-    });
-    localStorage.removeItem('user');
-    navigate('/');
-  };
-
   return (
     <AppBar position='sticky' top={0}>
       <Container maxWidth='md'>
-        <Toolbar sx={{ display: 'flex', justifyContent: 'space-between' }}>
-          <Box>
-            <Typography variant='h4'>{localStorage.getItem('user')}</Typography>
-          </Box>
+        <Toolbar
+          sx={{ display: 'flex', justifyContent: 'space-between', padding: 0 }}
+        >
+          <Typography variant='h4'>{localStorage.getItem('user')}</Typography>
 
-          <Box>
+          <Box sx={{ display: 'flex', alignItems: 'center' }}>
             <ThemeToggler />
-            <Button color='inherit' onClick={handleLeaveChat}>
-              <LogoutIcon />
-            </Button>
+            {localStorage.getItem('user') && <LogOut socket={socket} />}
           </Box>
         </Toolbar>
       </Container>

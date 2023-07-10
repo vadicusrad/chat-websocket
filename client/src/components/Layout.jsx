@@ -4,7 +4,13 @@ import Header from './Header';
 
 const Layout = ({ children, socket }) => {
   return (
-    <Grid container display='flex' direction='column' height='100vh'>
+    <Grid
+      container
+      display='flex'
+      direction='column'
+      height='100vh'
+      flexWrap='nowrap'
+    >
       <Header socket={socket} />
       <Container
         maxWidth='md'

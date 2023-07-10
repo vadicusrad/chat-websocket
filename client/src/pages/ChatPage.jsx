@@ -36,14 +36,16 @@ const ChatPage = ({ socket }) => {
 
   return (
     <Layout socket={socket}>
+      
       <Box
         sx={{
-          padding: '40px 20px 20px 20px',
           width: '100%',
           display: 'flex',
           flexGrow: 1,
-          height: '90vh',
-          maxHeight: 'screen',
+          padding: {
+            sm: '40px 20px 0 20px',
+            xs: '20px 0 0 0',
+          },
         }}
       >
         <Sidebar socket={socket} />

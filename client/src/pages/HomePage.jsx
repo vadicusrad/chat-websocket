@@ -47,12 +47,19 @@ const HomePage = ({ socket }) => {
           gap: 4,
           marginTop: '10vh',
           maxWidth: '640px',
-          padding: '40px 60px 40px 60px',
           boxShadow: 2,
           borderRadius: '10px',
+          padding: {
+            sm: '40px 60px 40px 60px',
+            xs: '40px 30px 40px 30px',
+          },
         }}
       >
-        <Typography variant='h3' component='h1'>
+        <Typography
+          variant='h3'
+          component='h1'
+          sx={{ typography: { sm: 'h3', xs: 'h4' } }}
+        >
           Вход в чат
         </Typography>
 
